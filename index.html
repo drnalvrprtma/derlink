@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deren Alvaro Pratama</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ── Variables ─────────────────────────────────────── */
+:root {
+  --bg: #eef6ff;
+  --surface: rgba(255,255,255,0.55);
+  --surface-solid: rgba(255,255,255,0.82);
+  --surface-hover: rgba(255,255,255,0.80);
+  --border: rgba(14,165,233,0.13);
+  --border-hover: rgba(14,165,233,0.32);
+  --text-primary: #0c1a2e;
+  --text-secondary: #4a6480;
+  --text-muted: #93aec4;
+  --accent: #0ea5e9;
+  --accent-light: #38bdf8;
+  --accent-soft: rgba(14,165,233,0.09);
+  --shadow-sm: 0 1px 4px rgba(14,165,233,0.07),0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 6px 28px rgba(14,165,233,0.12),0 2px 8px rgba(0,0,0,0.06);
+  --shadow-lg: 0 16px 56px rgba(14,165,233,0.18),0 4px 16px rgba(0,0,0,0.08);
+  --blur: blur(22px);
+  --blur-heavy: blur(32px);
+  --r-sm: 14px; --r-md: 20px; --r-lg: 26px;
+}
+[data-theme="dark"] {
+  --bg: #060e1c;
+  --surface: rgba(10,24,46,0.60);
+  --surface-solid: rgba(12,28,52,0.88);
+  --surface-hover: rgba(18,36,64,0.85);
+  --border: rgba(56,189,248,0.13);
+  --border-hover: rgba(56,189,248,0.32);
+  --text-primary: #e8f4ff;
+  --text-secondary: #7aa3c0;
+  --text-muted: #3d5a72;
+  --accent-soft: rgba(56,189,248,0.09);
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.35);
+  --shadow-md: 0 6px 28px rgba(0,0,0,0.35),0 2px 8px rgba(56,189,248,0.07);
+  --shadow-lg: 0 16px 56px rgba(0,0,0,0.50),0 4px 16px rgba(56,189,248,0.12);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',-apple-system,sans-serif;
+  background:var(--bg);color:var(--text-primary);
+  min-height:100vh;overflow-x:hidden;cursor:none;
+  transition:background .5s,color .3s;
+}
+
+/* ── Cursor ─────────────────────────────────────────── */
+#cur-dot{position:fixed;width:9px;height:9px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s,height .22s,opacity .22s;}
+#cur-ring{position:fixed;width:30px;height:30px;border:1.5px solid var(--accent-light);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .22s;opacity:.55;}
+
+/* ── Loader ─────────────────────────────────────────── */
+#loader{position:fixed;inset:0;background:var(--bg);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity .6s,visibility .6s;}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.ld-logo{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--accent);opacity:0;animation:fdIn .5s ease .3s forwards;}
+.ld-bar{width:110px;height:2px;background:var(--border);border-radius:99px;overflow:hidden;opacity:0;animation:fdIn .5s ease .5s forwards;}
+.ld-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),#7dd3fc);border-radius:99px;animation:ldFill 1.4s ease .6s forwards;}
+@keyframes ldFill{to{width:100%}}
+@keyframes fdIn{to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Background ─────────────────────────────────────── */
+.bg-c{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(88px);opacity:.38;animation:orbD linear infinite;}
+[data-theme="dark"] .orb{opacity:.20}
+.orb-1{width:620px;height:620px;background:radial-gradient(circle,#bae6fd 0%,#7dd3fc 45%,transparent 70%);top:-210px;left:-160px;animation-duration:24s}
+.orb-2{width:520px;height:520px;background:radial-gradient(circle,#e0f2fe 0%,#38bdf8 45%,transparent 70%);top:28%;right:-190px;animation-duration:19s;animation-delay:-8s}
+.orb-3{width:420px;height:420px;background:radial-gradient(circle,#f0f9ff 0%,#0ea5e9 38%,transparent 70%);bottom:-110px;left:28%;animation-duration:28s;animation-delay:-4s}
+@keyframes orbD{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(28px,-38px) scale(1.04)}66%{transform:translate(-18px,28px) scale(.97)}}
+#pcv{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.38}
+#sbar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),#7dd3fc);z-index:999;width:0;transition:width .1s linear;}
+
+/* ── Layout ─────────────────────────────────────────── */
+.wrap{position:relative;z-index:10;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:38px 20px 64px;max-width:468px;margin:0 auto;}
+
+/* ── Topbar ─────────────────────────────────────────── */
+.topbar{width:100%;display:flex;align-items:center;justify-content:space-between;margin-bottom:44px;opacity:0;animation:slideDown .6s ease 1.6s forwards;}
+.clock-pill{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);padding:7px 14px;border-radius:99px;font-size:12px;color:var(--text-secondary);box-shadow:var(--shadow-sm);}
+.online-dot{width:6px;height:6px;background:#22c55e;border-radius:50%;box-shadow:0 0 8px #22c55e;animation:gG 2s ease infinite;}
+@keyframes gG{0%,100%{box-shadow:0 0 8px #22c55e}50%{box-shadow:0 0 14px #22c55e}}
+.theme-btn{width:38px;height:38px;border-radius:50%;background:var(--surface);border:1px solid var(--border);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);display:flex;align-items:center;justify-content:center;cursor:none;color:var(--text-secondary);font-size:14px;box-shadow:var(--shadow-sm);transition:.18s ease;}
+.theme-btn:hover{background:var(--surface-hover);border-color:var(--border-hover);color:var(--accent);transform:scale(1.08);}
+
+/* ── Profile ────────────────────────────────────────── */
+.profile{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;opacity:0;animation:fadeUp .7s ease 1.85s forwards;}
+.av-wrap{position:relative;margin-bottom:18px}
+.av-ring{width:106px;height:106px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#7dd3fc,#0ea5e9,#bae6fd);box-shadow:0 0 0 5px rgba(14,165,233,.10),var(--shadow-md);animation:avG 4s ease-in-out infinite;}
+@keyframes avG{0%,100%{box-shadow:0 0 0 5px rgba(14,165,233,.09),var(--shadow-md)}50%{box-shadow:0 0 0 9px rgba(14,165,233,.16),0 8px 32px rgba(14,165,233,.22)}}
+.av-img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:2.5px solid rgba(255,255,255,.85);}
+.av-badge{position:absolute;bottom:5px;right:5px;width:17px;height:17px;border-radius:50%;background:#22c55e;border:2.5px solid var(--bg);box-shadow:0 0 10px rgba(34,197,94,.5);animation:gG 2s ease infinite;}
+
+.p-name{font-family:'Syne',sans-serif;font-size:clamp(24px,6vw,30px);font-weight:800;color:var(--text-primary);letter-spacing:-.4px;line-height:1.1;margin-bottom:6px;}
+.p-handle{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--accent);font-weight:500;background:var(--accent-soft);padding:4px 13px;border-radius:99px;border:1px solid var(--border);cursor:none;transition:.18s ease;margin-bottom:13px;}
+.p-handle:hover{background:rgba(14,165,233,.15);border-color:var(--border-hover)}
+.cpico{font-size:10.5px;opacity:.65;transition:transform .2s,opacity .2s}
+.p-handle:hover .cpico{transform:scale(1.2);opacity:1}
+
+.p-bio{font-size:14px;color:var(--text-secondary);line-height:1.72;max-width:296px;font-weight:300;margin-bottom:20px;}
+.tcur{display:inline-block;width:2px;height:.95em;background:var(--accent);margin-left:1px;animation:blink .85s step-end infinite;vertical-align:text-bottom;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.stats-row{display:flex;gap:9px;margin-bottom:30px;flex-wrap:wrap;justify-content:center;}
+.s-chip{background:var(--surface);border:1px solid var(--border);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);padding:7px 15px;border-radius:99px;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-secondary);box-shadow:var(--shadow-sm);transition:.18s ease;}
+.s-chip:hover{border-color:var(--border-hover);color:var(--accent);background:var(--surface-hover);}
+.s-num{font-family:'Syne',sans-serif;font-weight:700;font-size:12.5px;color:var(--text-primary)}
+
+/* ═══════════════════════════════════════════════════════
+   LINKS SECTION — no card, no background
+═══════════════════════════════════════════════════════ */
+.links-panel{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-radius:0;
+  padding:0;
+  box-shadow:none;
+  position:relative;
+  overflow:visible;
+  opacity:0;
+  animation:fadeUp .7s ease 2.1s forwards;
+}
+[data-theme="dark"] .links-panel{
+  background:transparent;
+  border:none;
+}
+
+.panel-lbl{font-size:10.5px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.11em;margin-bottom:12px;padding-left:3px;}
+.llist{display:flex;flex-direction:column;gap:10px;}
+
+/* ── Individual link button — solid, bigger ── */
+.lbtn{
+  position:relative;
+  display:flex;align-items:center;gap:15px;
+  padding:16px 18px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:18px;
+  text-decoration:none;color:var(--text-primary);
+  cursor:pointer;overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:transform .28s cubic-bezier(.34,1.56,.64,1),
+             border-color .18s,box-shadow .18s,background .18s;
+  will-change:transform;-webkit-tap-highlight-color:transparent;
+}
+[data-theme="dark"] .lbtn{
+  background:rgba(10,22,44,0.80);
+  border:1px solid rgba(56,189,248,0.13);
+}
+.lbtn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(14,165,233,.07),transparent 55%);
+  opacity:0;transition:opacity .25s;border-radius:inherit;
+}
+.lbtn:hover::before{opacity:1}
+.lbtn:hover{
+  transform:translateY(-2px) scale(1.009);
+  border-color:var(--border-hover);
+  box-shadow:var(--shadow-md);
+  background:rgba(255,255,255,.95);
+}
+[data-theme="dark"] .lbtn:hover{background:rgba(14,30,60,.90);border-color:rgba(56,189,248,.30);}
+.lbtn:active{transform:scale(.98)}
+
+.ico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.20);transition:transform .28s cubic-bezier(.34,1.56,.64,1);}
+.lbtn:hover .ico{transform:scale(1.12) rotate(-5deg)}
+.btxt{flex:1}
+.blbl{display:block;font-size:14.5px;font-weight:500;color:var(--text-primary)}
+.bsub{display:block;font-size:12px;color:var(--text-muted);font-weight:300;margin-top:2px}
+.barr{font-size:12px;color:var(--text-muted);opacity:.45;transition:transform .22s,opacity .2s,color .2s;flex-shrink:0;}
+.lbtn:hover .barr{transform:translateX(3px);opacity:1;color:var(--accent)}
+
+/* panel dividers — now match panel-lbl style */
+.pdiv{margin:18px 0 12px;display:block;}
+.pdiv-ln{display:none;}
+.pdiv-tx{font-size:10.5px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.11em;padding-left:3px;}
+
+/* platform icon colors */
+.c-ig {background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.c-tt {background:#010101}
+.c-yt {background:#ff0000}
+.c-gh {background:#1b1f23}
+.c-wa {background:#25d366}
+.c-dc {background:#5865f2}
+.c-ml {background:linear-gradient(135deg,#0ea5e9,#0369a1)}
+
+/* ripple */
+.ripple{position:absolute;border-radius:50%;background:rgba(14,165,233,.14);transform:scale(0);animation:rip .55s ease-out forwards;pointer-events:none;}
+@keyframes rip{to{transform:scale(4);opacity:0}}
+
+/* ── Visitor Counter ────────────────────────────────── */
+.v-sec{width:100%;margin-top:14px;opacity:0;animation:fadeUp .7s ease 2.35s forwards;}
+.v-card{
+  background:rgba(255,255,255,0.42);
+  border:1px solid rgba(255,255,255,0.75);
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  border-radius:22px;padding:18px 22px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 4px 22px rgba(14,165,233,.10),inset 0 1px 0 rgba(255,255,255,.85);
+}
+[data-theme="dark"] .v-card{background:rgba(8,20,44,.52);border:1px solid rgba(56,189,248,.16);}
+.v-left h4{font-family:'Syne',sans-serif;font-size:12.5px;font-weight:700;color:var(--text-primary);margin-bottom:2px}
+.v-left p{font-size:11.5px;color:var(--text-muted);font-weight:300}
+.v-num{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;background:linear-gradient(135deg,var(--accent),#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* ── All Projects Button ────────────────────────────── */
+.proj-sec{width:100%;margin-top:14px;opacity:0;animation:fadeUp .7s ease 2.5s forwards;}
+.proj-cat-lbl{font-size:10.5px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.11em;margin-bottom:12px;padding-left:3px;display:block;}
+.proj-btn{
+  width:100%;position:relative;
+  display:flex;align-items:center;gap:15px;
+  padding:16px 18px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:18px;
+  text-decoration:none;color:var(--text-primary);
+  cursor:pointer;overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:transform .28s cubic-bezier(.34,1.56,.64,1),border-color .18s,box-shadow .18s,background .18s;
+  will-change:transform;-webkit-tap-highlight-color:transparent;
+}
+[data-theme="dark"] .proj-btn{background:rgba(10,22,44,0.80);border:1px solid rgba(56,189,248,0.13);}
+.proj-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(14,165,233,.07),transparent 55%);opacity:0;transition:opacity .25s;border-radius:inherit;}
+.proj-btn:hover::before{opacity:1}
+.proj-btn:hover{
+  transform:translateY(-2px) scale(1.009);
+  border-color:var(--border-hover);
+  box-shadow:var(--shadow-md);
+  background:rgba(255,255,255,.95);
+}
+[data-theme="dark"] .proj-btn:hover{background:rgba(14,30,60,.90);border-color:rgba(56,189,248,.30);}
+.proj-btn:active{transform:scale(.98)}
+
+.proj-ico{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#0369a1);display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;flex-shrink:0;box-shadow:0 2px 8px rgba(14,165,233,.30);transition:transform .28s cubic-bezier(.34,1.56,.64,1);}
+.proj-btn:hover .proj-ico{transform:scale(1.12) rotate(-5deg)}
+.proj-body{flex:1}
+.proj-lbl{display:block;font-size:14.5px;font-weight:500;color:var(--text-primary);margin-bottom:2px}
+.proj-sub{display:block;font-size:12px;color:var(--text-muted);font-weight:300}
+.proj-badge{background:linear-gradient(135deg,var(--accent),#38bdf8);color:#fff;font-size:11px;font-weight:600;padding:3px 11px;border-radius:99px;box-shadow:0 2px 8px rgba(14,165,233,.30);flex-shrink:0;}
+
+/* ── Music btn ──────────────────────────────────────── */
+.music-btn{position:fixed;bottom:26px;right:22px;z-index:100;width:42px;height:42px;border-radius:50%;background:var(--surface);border:1px solid var(--border);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);display:flex;align-items:center;justify-content:center;cursor:none;color:var(--text-secondary);font-size:15px;box-shadow:var(--shadow-md);transition:.18s ease;opacity:0;animation:fadeUp .5s ease 2.8s forwards;}
+.music-btn:hover{border-color:var(--border-hover);color:var(--accent);transform:scale(1.08);}
+.music-btn.playing{color:var(--accent);border-color:var(--border-hover)}
+.music-btn.playing i{animation:spin 2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── Toast ──────────────────────────────────────────── */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(10px);background:#0c1a2e;color:#fff;padding:9px 18px;border-radius:99px;font-size:12.5px;font-weight:500;opacity:0;transition:all .28s ease;z-index:999;pointer-events:none;white-space:nowrap;box-shadow:var(--shadow-lg);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── Mobile ─────────────────────────────────────────── */
+@media(max-width:480px){
+  .wrap{padding:26px 14px 56px}
+  .topbar{margin-bottom:34px}
+  .p-name{font-size:24px}
+  .links-panel{padding:16px 13px;border-radius:22px}
+  .lbtn{padding:14px 14px;gap:12px}
+  .proj-btn{padding:14px 16px}
+  .v-card{padding:14px 18px}
+}
+</style>
+</head>
+<body>
+
+<div id="sbar"></div>
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<div id="loader">
+  <div class="ld-logo">DAP.</div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+</div>
+
+<div class="bg-c">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<canvas id="pcv"></canvas>
+
+<div class="toast" id="toast">✓ Username copied!</div>
+
+<button class="music-btn" id="musicBtn">
+  <i class="fa-solid fa-music"></i>
+</button>
+
+<div class="wrap">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="clock-pill">
+      <span class="online-dot"></span>
+      <span id="clk">--:-- --</span>&nbsp;·&nbsp;Online
+    </div>
+    <button class="theme-btn" id="themeBtn">
+      <i class="fa-solid fa-sun" id="themeIco"></i>
+    </button>
+  </div>
+
+  <!-- Profile -->
+  <div class="profile">
+    <div class="av-wrap">
+      <div class="av-ring">
+        <!-- Ganti src foto terang & gelap di sini -->
+        <img class="av-img" id="avImg"
+          src="https://files.catbox.moe/h7lmy0.jpg"
+          data-light="https://files.catbox.moe/h7lmy0.jpg"
+          data-dark="https://files.catbox.moe/ui6bmj.jpg"
+          alt="Deren Alvaro Pratama">
+      </div>
+      <div class="av-badge"></div>
+    </div>
+    <h1 class="p-name">Deren Alvaro Pratama</h1>
+    <div class="p-handle" id="cpHandle">
+      @derenxtrnlz <i class="fa-regular fa-copy cpico"></i>
+    </div>
+    <p class="p-bio"><span id="typeTxt"></span><span class="tcur"></span></p>
+    <div class="stats-row">
+      <div class="s-chip"><i class="fa-solid fa-code" style="color:var(--accent);font-size:10.5px"></i><span><span class="s-num">100+</span> Projects</span></div>
+      <div class="s-chip"><i class="fa-solid fa-star" style="color:#f59e0b;font-size:10.5px"></i><span><span class="s-num">13k</span> Stars</span></div>
+      <div class="s-chip"><i class="fa-solid fa-users" style="color:#22c55e;font-size:10.5px"></i><span><span class="s-num">1k</span> Followers</span></div>
+    </div>
+  </div>
+
+  <!-- Glass Links Panel -->
+  <div class="links-panel">
+
+    <div class="panel-lbl">Social</div>
+    <div class="llist">
+      <a href="https://www.instagram.com/drnalvrprtm?igsh=MXh6d2s4ZjNqM25ybg==" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico c-ig"><i class="fa-brands fa-instagram"></i></div>
+        <div class="btxt"><span class="blbl">Instagram</span><span class="bsub">@drnalvrprtma · 1k followers</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+      <a href="https://tiktok.com/@derenxtrnlz" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico c-tt"><i class="fa-brands fa-tiktok"></i></div>
+        <div class="btxt"><span class="blbl">TikTok</span><span class="bsub">Tech & design content daily</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+      <a href="https://youtube.com/@derenmakannasi" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico c-yt"><i class="fa-brands fa-youtube"></i></div>
+        <div class="btxt"><span class="blbl">YouTube</span><span class="bsub">Tutorials & devlogs · 1k subs</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+    </div>
+
+    <div class="pdiv"><span class="pdiv-tx">Dev</span></div>
+    <div class="llist">
+      <a href="https://github.com/akbar530" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico c-gh"><i class="fa-brands fa-github"></i></div>
+        <div class="btxt"><span class="blbl">GitHub</span><span class="bsub">Open source — 18k+ stars</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+    </div>
+
+    <div class="pdiv"><span class="pdiv-tx">Contact</span></div>
+    <div class="llist">
+      <a href="https://wa.me/6281525753695" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico c-wa"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="btxt"><span class="blbl">WhatsApp</span><span class="bsub">Business inquiries</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+      <a href="https://discord.gg/drnalvrprtma" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico c-dc"><i class="fa-brands fa-discord"></i></div>
+        <div class="btxt"><span class="blbl">Discord</span><span class="bsub">Join the community</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+      <a href="https://derenmakannasi@gmail.com" class="lbtn" onclick="rpl(event)">
+        <div class="ico c-ml"><i class="fa-solid fa-envelope"></i></div>
+        <div class="btxt"><span class="blbl">Email</span><span class="bsub">derenmakannasi@gmail.com</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- All Projects -->
+  <div class="proj-sec">
+    <span class="proj-cat-lbl">All Projects</span>
+    <div class="llist">
+
+      <!-- 1. Design Gallery (sudah ada sebelumnya) -->
+      <a href="https://galeri-deren.vercel.app" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico" style="background:linear-gradient(135deg,#f472b6,#a855f7)"><i class="fa-solid fa-palette"></i></div>
+        <div class="btxt"><span class="blbl">Design Gallery</span><span class="bsub">Semua karya & design Deren</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+
+      <!-- 2. Deren Player -->
+      <a href="https://derenn-player.vercel.app/" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)"><i class="fa-solid fa-music"></i></div>
+        <div class="btxt"><span class="blbl">Deren Player</span><span class="bsub">Music player by Deren</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+
+      <!-- 3. Deren Store -->
+      <a href="https://deren-store.vercel.app" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"><i class="fa-solid fa-bag-shopping"></i></div>
+        <div class="btxt"><span class="blbl">Deren Store</span><span class="bsub">Official store Deren</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+
+      <!-- 4. TikTok Downloader -->
+      <a href="https://tiktok-downloader-dren.vercel.app" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico" style="background:linear-gradient(135deg,#010101,#374151)"><i class="fa-brands fa-tiktok"></i></div>
+        <div class="btxt"><span class="blbl">TikTok Downloader</span><span class="bsub">Download video TikTok gratis</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+
+      <!-- 5. Einherjar Community -->
+      <a href="https://einherjar-community.vercel.app" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico" style="background:linear-gradient(135deg,#5865f2,#4338ca)"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="btxt"><span class="blbl">Einherjar Community</span><span class="bsub">Komunitas gaming & kreator</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+
+      <!-- 6. Portofolio Deren -->
+      <a href="https://porto-deren.vercel.app" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico" style="background:linear-gradient(135deg,#0ea5e9,#0369a1)"><i class="fa-solid fa-briefcase"></i></div>
+        <div class="btxt"><span class="blbl">Portofolio</span><span class="bsub">Karya & pengalaman Deren</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+
+      <!-- 7. NGL -->
+      <a href="https://ngl-v2.vercel.app" class="lbtn" target="_blank" rel="noopener" onclick="rpl(event)">
+        <div class="ico" style="background:linear-gradient(135deg,#f97316,#dc2626)"><i class="fa-solid fa-comment-dots"></i></div>
+        <div class="btxt"><span class="blbl">NGL</span><span class="bsub">Kirim pesan anonim ke Deren</span></div>
+        <i class="fa-solid fa-arrow-right barr"></i>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Visitor Counter -->
+  <div class="v-sec">
+    <div class="v-card">
+      <div class="v-left"><h4>Page Visitors</h4><p>Today's unique views</p></div>
+      <div class="v-num" id="vcnt">0</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* Loader */
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hidden'),1800));
+
+/* Cursor */
+const cd=document.getElementById('cur-dot'),cr=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
+(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(a);})();
+document.querySelectorAll('a,button,.p-handle').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cd.style.width='6px';cd.style.height='6px';cd.style.opacity='.65';cr.style.width='42px';cr.style.height='42px';cr.style.borderColor='var(--accent)';cr.style.opacity='.75';});
+  el.addEventListener('mouseleave',()=>{cd.style.width='';cd.style.height='';cd.style.opacity='';cr.style.width='';cr.style.height='';cr.style.borderColor='';cr.style.opacity='';});
+});
+
+/* Clock */
+function tick(){const n=new Date();let h=n.getHours();const m=String(n.getMinutes()).padStart(2,'0');const ap=h>=12?'PM':'AM';h=h%12||12;document.getElementById('clk').textContent=`${h}:${m} ${ap}`;}
+tick();setInterval(tick,1000);
+
+/* Theme */
+let dark=false;
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  dark=!dark;
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  document.getElementById('themeIco').className=dark?'fa-solid fa-moon':'fa-solid fa-sun';
+  const av=document.getElementById('avImg');
+  av.src=dark?av.dataset.dark:av.dataset.light;
+});
+
+/* Copy */
+document.getElementById('cpHandle').addEventListener('click',()=>{
+  navigator.clipboard.writeText('@derenalvaro').catch(()=>{});
+  const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);
+});
+
+/* Ripple */
+function rpl(e){
+  const b=e.currentTarget,r=document.createElement('span');
+  const rc=b.getBoundingClientRect(),s=Math.max(rc.width,rc.height)*1.5;
+  r.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-rc.left-s/2}px;top:${e.clientY-rc.top-s/2}px;`;
+  r.classList.add('ripple');b.appendChild(r);setTimeout(()=>r.remove(),650);
+}
+
+/* Typing */
+const phrases=['UI/UX Designer & Developer.','Building premium web experiences.','Open source enthusiast.','Creator. Builder. Dreamer.'];
+let pi=0,ci=0,del=false;const te=document.getElementById('typeTxt');
+function type(){
+  const cur=phrases[pi];
+  if(!del){te.textContent=cur.slice(0,++ci);if(ci===cur.length){del=true;setTimeout(type,2200);return;}setTimeout(type,52);}
+  else{te.textContent=cur.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;setTimeout(type,380);return;}setTimeout(type,26);}
+}
+setTimeout(type,2200);
+
+/* Visitor counter */
+const tgt=Math.floor(Math.random()*400+1100);let cnt=0;const vc=document.getElementById('vcnt');
+function rollUp(){const step=Math.ceil((tgt-cnt)/12);cnt=Math.min(cnt+step,tgt);vc.textContent=cnt.toLocaleString();if(cnt<tgt)requestAnimationFrame(rollUp);}
+setTimeout(rollUp,2500);
+
+/* Scroll bar */
+window.addEventListener('scroll',()=>{const s=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('sbar').style.width=s+'%';});
+
+/* Particles */
+const cv=document.getElementById('pcv');const ctx=cv.getContext('2d');
+function rsz(){cv.width=window.innerWidth;cv.height=window.innerHeight;}rsz();
+window.addEventListener('resize',rsz);
+const pts=Array.from({length:44},()=>({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,r:Math.random()*1.8+.4,dx:(Math.random()-.5)*.32,dy:(Math.random()-.5)*.32,o:Math.random()*.38+.08}));
+function drawPts(){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  const dk=document.documentElement.getAttribute('data-theme')==='dark';
+  pts.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>cv.width)p.dx*=-1;if(p.y<0||p.y>cv.height)p.dy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=dk?`rgba(56,189,248,${p.o})`:`rgba(14,165,233,${p.o})`;ctx.fill();});
+  requestAnimationFrame(drawPts);
+}drawPts();
+
+/* Music */
+let mp=false;const mb=document.getElementById('musicBtn');
+mb.addEventListener('click',()=>{mp=!mp;mb.classList.toggle('playing',mp);mb.querySelector('i').className=mp?'fa-solid fa-compact-disc':'fa-solid fa-music';});
+
+/* Stagger link btns */
+document.querySelectorAll('.lbtn').forEach((b,i)=>{
+  b.style.opacity='0';b.style.transform='translateY(14px)';
+  b.style.transition=`opacity .45s ease ${2.1+i*.06}s,transform .45s cubic-bezier(.34,1.56,.64,1) ${2.1+i*.06}s,border-color .18s,box-shadow .18s,background .18s`;
+  setTimeout(()=>{b.style.opacity='1';b.style.transform='translateY(0)';},2100+i*60);
+});
+</script>
+</body>
+</html>
