@@ -123,12 +123,6 @@ function typeLoop() {
 }
 setTimeout(typeLoop, 2000);
 
-window.addEventListener('scroll', function () {
-  var max = document.body.scrollHeight - window.innerHeight;
-  var pct = max > 0 ? (window.scrollY / max) * 100 : 0;
-  document.getElementById('progress').style.width = pct + '%';
-});
-
 var musicBtn = document.getElementById('musicBtn');
 var playing = false;
 musicBtn.addEventListener('click', function () {
