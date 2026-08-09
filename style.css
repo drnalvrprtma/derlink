@@ -37,8 +37,6 @@ body::-webkit-scrollbar{display:none}
   #cursorCore,#cursorLens{display:none}
 }
 
-#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,rgba(255,255,255,0.9),rgba(255,255,255,0.3));z-index:999;transition:width .1s linear}
-
 #cursorCore{position:fixed;width:7px;height:7px;background:var(--white);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .25s}
 #cursorLens{
   position:fixed;width:34px;height:34px;border-radius:50%;pointer-events:none;z-index:9998;
