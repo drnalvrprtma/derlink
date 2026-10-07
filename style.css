@@ -44,6 +44,7 @@ button{font:inherit;color:inherit}
 }
 .rv.in{--rvy:0px;--rvx:0px;--rr:0deg;opacity:1}
 .linkCard.rv{--rvy:0px;--rvx:-40px;--rr:-1deg}
+.linkCard.rv.in{--rvx:0px;--rr:0deg}
 .rv.done{transition:opacity .15s,transform .15s var(--ease),box-shadow .15s var(--ease)}
 
 #progress{position:fixed;top:0;left:0;height:5px;width:0;background:var(--ink);z-index:999}
