@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Fitrah Akbar Maulana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="cursorDot"></div>
+
+<div id="loader">
+  <div class="loaderMark">AKBAR</div>
+  <div class="loaderText">LOADING... <span id="loaderPct">0</span>%</div>
+  <div class="loaderTrack"><div class="loaderFill" id="loaderFill"></div></div>
+</div>
+
+<div class="bgLayer" aria-hidden="true"><div class="bgGrid"></div></div>
+
+<div class="toast" id="toast">Username disalin</div>
+
+<main class="wrap">
+
+  <header class="topbar">
+    <div class="statusPill">
+      <span class="statusDot"></span>
+      <span id="clock">--:--</span>
+      <span>&middot;</span>
+      <span>Online</span>
+    </div>
+  </header>
+
+  <section class="profile">
+    <div class="avatarWrap">
+      <div class="avatarRing">
+        <img class="avatarImg" src="https://files.catbox.moe/ays39o.jpg" alt="Fitrah Akbar Maulana">
+      </div>
+    </div>
+
+    <h1 class="name" id="name">Fitrah Akbar Maulana</h1>
+
+    <button class="handle" id="handleBtn" data-copy="@drnalvrprtm">
+      <span>@drnalvrprtm</span>
+      <i class="fa-regular fa-copy"></i>
+    </button>
+
+    <p class="bio"><span id="typeText"></span><span class="caret"></span></p>
+
+    <div class="statsRow">
+      <div class="statChip"><i class="fa-solid fa-code"></i><span><b>100+</b> Projects</span></div>
+      <div class="statChip"><i class="fa-solid fa-star"></i><span><b>13k</b> Stars</span></div>
+      <div class="statChip"><i class="fa-solid fa-users"></i><span><b>1k</b> Followers</span></div>
+    </div>
+  </section>
+
+  <nav class="socialRow" aria-label="Social media">
+    <a class="socialBtn rippleHost c-pink" href="https://www.instagram.com/drnalvrprtm?igsh=MXh6d2s4ZjNqM25ybg==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a class="socialBtn rippleHost c-mint" href="https://tiktok.com/@derenxtrnlz" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+    <a class="socialBtn rippleHost c-red" href="https://youtube.com/@derenmakannasi" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+  </nav>
+
+  <section class="panel">
+    <h2 class="groupLabel rv">Links</h2>
+    <div class="linkList">
+      <a class="linkCard rv tilt rippleHost" href="https://github.com/akbar530" target="_blank" rel="noopener">
+        <span class="linkIcon"><i class="fa-brands fa-github"></i></span>
+        <span class="linkText"><span class="linkLabel">GitHub</span><span class="linkSub">Open source &middot; 18k+ stars</span></span>
+        <i class="fa-solid fa-arrow-right linkArrow"></i>
+      </a>
+      <a class="linkCard rv tilt rippleHost" href="https://wa.me/6281525753695" target="_blank" rel="noopener">
+        <span class="linkIcon"><i class="fa-brands fa-whatsapp"></i></span>
+        <span class="linkText"><span class="linkLabel">WhatsApp</span><span class="linkSub">Business inquiries</span></span>
+        <i class="fa-solid fa-arrow-right linkArrow"></i>
+      </a>
+      <a class="linkCard rv tilt rippleHost" href="https://discord.gg/drnalvrprtma" target="_blank" rel="noopener">
+        <span class="linkIcon"><i class="fa-brands fa-discord"></i></span>
+        <span class="linkText"><span class="linkLabel">Discord</span><span class="linkSub">Join the community</span></span>
+        <i class="fa-solid fa-arrow-right linkArrow"></i>
+      </a>
+      <a class="linkCard rv tilt rippleHost" href="mailto:derenmakannasi@gmail.com">
+        <span class="linkIcon"><i class="fa-solid fa-envelope"></i></span>
+        <span class="linkText"><span class="linkLabel">Email</span><span class="linkSub">derenmakannasi@gmail.com</span></span>
+        <i class="fa-solid fa-arrow-right linkArrow"></i>
+      </a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 class="groupLabel rv">All Projects</h2>
+    <div class="linkList" id="projectsList">
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </div>
+  </section>
+
+  <section class="player rv" id="player" hidden>
+    <div class="cover"><div class="disc" id="disc"><i class="fa-solid fa-music"></i></div></div>
+    <div class="pInfo">
+      <b id="trackTitle"></b>
+      <span id="trackArtist"></span>
+      <input type="range" id="seek" min="0" max="100" step="0.1" value="0" aria-label="Progress musik">
+      <div class="times"><span id="tCur">0:00</span><span id="tDur">0:00</span></div>
+    </div>
+    <button class="playBtn" id="playBtn" aria-label="Putar musik"><i class="fa-solid fa-play"></i></button>
+  </section>
+
+  <footer class="footer rv">&copy; 2026 Akbar</footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
