@@ -1,4 +1,4 @@
-# ARVO — Platform Halaman Tautan Profil (*Link-in-Bio*)
+# ARVO
 
 **ARVO (`arvo.web.id`)** adalah platform web pembuat halaman kumpulan tautan (*link-in-bio* / *microsite* serupa [Linktree](https://linktr.ee)) yang memudahkan kreator, pelaku usaha, dan profesional menyatukan seluruh tautan penting, media sosial, serta portofolio ke dalam satu halaman profil yang rapi dan mudah dibagikan.
 
